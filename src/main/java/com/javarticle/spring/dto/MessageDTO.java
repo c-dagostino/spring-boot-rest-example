@@ -5,7 +5,7 @@ import com.javarticle.spring.constants.MessageType;
 /**
  * Created by darrell-shofstall on 8/10/17.
  */
-public class MessageDTO {
+public class MessageDTO extends BaseDTO {
 
     private String message;
     private MessageType type;

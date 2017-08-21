@@ -1,52 +1,43 @@
-package com.javarticle.spring.entity;
+package com.javarticle.spring.dto;
 
-import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.io.Serializable;
 
 /**
- * Created by chris-dagostino on 8/9/17.
+ * Created by darrell-shofstall on 8/11/17.
  */
-
-@Entity
-@Table(name="course")
-public class Course implements Serializable {
+public class CourseDTO extends BaseDTO{
 
     private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Column(name="course_id")
+
     private int courseId;
 
-    @Column(name="title")
     @NotNull (message = "courses.error.title.notnull")
     @Size(min = 0, max = 100, message = "courses.error.title.size")
     private String title;
 
-    @Column(name="category")
+
     @NotNull (message = "courses.error.category.notnull")
     @Size(min = 1, max = 30, message = "courses.error.category.size")
     private String category;
 
-    @Column(name="author_id")
+
     @NotNull (message = "courses.error.author_id.notnull")
     private int authorId;
 
-    @Column(name="course_length")
+
     private String length;
 
-    @Column(name="watch_href")
     @Size(min = 0, max = 300, message = "articles.error.category.size")
     private String watchHref;
 
 
-    public Course()
+    public CourseDTO()
     {
 
     }
 
-    public Course(int id, String title, int authorId, String watchHref, String length, String category)
+    public CourseDTO(int id, String title, int authorId, String watchHref, String length, String category)
     {
         this.courseId = id;
         this.title = title;

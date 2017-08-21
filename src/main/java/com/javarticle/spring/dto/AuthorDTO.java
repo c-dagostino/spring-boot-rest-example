@@ -1,36 +1,30 @@
-package com.javarticle.spring.entity;
+package com.javarticle.spring.dto;
 
-import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.io.Serializable;
 
 /**
- * Created by chris-dagostino on 8/9/17.
+ * Created by darrell-shofstall on 8/11/17.
  */
+public class AuthorDTO extends BaseDTO{
 
-@Entity
-@Table(name="author")
-public class Author {
+    private static final long serialVersionUID = 1L;
 
-    @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
-    @Column(name="author_id")
     private int authorId;
 
-    @Column(name="first_name")
+
     @NotNull (message = "courses.error.first_name.notnull")
     @Size(min = 0, max = 100, message = "authors.error.first_name.size")
     private String firstName;
 
-    @Column(name="last_name")
+
     @NotNull (message = "courses.error.last_name.notnull")
     @Size(min = 0, max = 150, message = "authors.error.last_name.size")
     private String lastName;
 
-    public Author(){};
+    public AuthorDTO(){};
 
-    public Author(int id, String firstName, String lastName)
+    public AuthorDTO(int id, String firstName, String lastName)
     {
         this.authorId = id;
         this.firstName = firstName;
