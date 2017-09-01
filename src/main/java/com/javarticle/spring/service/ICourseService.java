@@ -18,7 +18,7 @@ public interface ICourseService {
     CourseDTO GetCourseById(int id);
     void UpsertCourse(Course course);
     void DeleteCourse(int id);
-    List<CourseDTO> GetPage(int pageNumber);
+    CoursesDTO GetPage(int pageNumber, int pageSize);
     CourseDTO ConvertToDto(Course course);
     Course ConvertToEntity(CourseDTO courseDto) throws ParseException;
     CoursesDTO BuildResponseDto(Page<Course> courses, List<CourseDTO> listDto );

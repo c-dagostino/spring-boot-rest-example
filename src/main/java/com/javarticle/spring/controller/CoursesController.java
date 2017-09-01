@@ -45,12 +45,11 @@ public class CoursesController {
         return new ResponseEntity<List<CourseDTO>>(courseService.GetAllCourses(), HttpStatus.OK);
     }
 
+    @CrossOrigin
     @RequestMapping(value = "coursesByPage", method = RequestMethod.GET)
-    public ResponseEntity<List<CourseDTO>> getPage(@RequestParam(name = "p", defaultValue = "1") int pageNumber) {
+    public ResponseEntity<List<CourseDTO>> getPage(@RequestParam(name = "pageIndex", defaultValue = "0") int pageIndex, @RequestParam(name = "pageSize", defaultValue = "1") int pageSize) {
 
-        List<CourseDTO> courses = courseService.GetPage(pageNumber);
-
-        return new ResponseEntity(courses, HttpStatus.OK);
+       return new ResponseEntity(courseService.GetPage(pageIndex, pageSize), HttpStatus.OK);
     }
 
     @CrossOrigin

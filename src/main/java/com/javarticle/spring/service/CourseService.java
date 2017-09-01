@@ -25,7 +25,6 @@ import java.util.stream.Collectors;
 @Service
 public class CourseService implements ICourseService {
 
-    private final static int PAGESIZE = 3;
 
     @Autowired
     private ICourseDAO courseDAO;
@@ -60,12 +59,13 @@ public class CourseService implements ICourseService {
     }
 
     @Override
-    public List<CourseDTO> GetPage(int pageNumber) {
-        Pageable request = new PageRequest(pageNumber - 1, PAGESIZE, Sort.Direction.ASC, "courseId");
+    public CoursesDTO GetPage(int pageNumber, int pageSize) {
+        Pageable request = new PageRequest(pageNumber, pageSize, Sort.Direction.ASC, "courseId");
         Page<Course> coursePage = courseRepository.findAll(request);
 
+       List<CourseDTO> courses = coursePage.map(course -> ConvertToDto(course)).getContent();
 
-        return coursePage.map(course -> ConvertToDto(course)).getContent();
+        return BuildResponseDto(coursePage, courses);
     }
 
     @Override
